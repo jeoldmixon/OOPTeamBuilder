@@ -138,3 +138,4 @@ const internBuilder = () => {
         })
         .then(nextPrompt);
 }
+managerBuilder();

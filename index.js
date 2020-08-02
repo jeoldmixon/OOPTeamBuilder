@@ -1,5 +1,9 @@
+const pageformat = require('./public/assets/js/pageFormat');
+const pageWriteFile = require('./public/assets/js/pageWriteFile');
 const inquirer = require('inquirer');
-
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 const teamArray = [];
 
 // Manager Profile Builder
@@ -8,22 +12,22 @@ const managerBuilder = () => {
     return inquirer.prompt([{
                 type: 'input',
                 name: 'name',
-                message: 'Enter manager name'
+                message: "Enter manager's name"
             },
             {
                 type: 'input',
                 name: 'id',
-                message: 'Enter manager employee ID number'
+                message: "Enter manager's employee ID number"
             },
             {
                 type: 'input',
                 name: 'email',
-                message: 'Enter manager email address'
+                message: "Enter manager's email address"
             },
             {
                 type: 'input',
                 name: 'managerphone',
-                message: 'Enter manager office phone numbner'
+                message: "Enter manager's office phone numbner"
             },
         ])
         .then((responses) => {
@@ -36,9 +40,9 @@ const managerBuilder = () => {
                 email: manager.getEmail(),
                 managerphone: manager.getManagerphone(),
             };
-            teamArray.push(managerRole)
+            teamArray.push(managerProfile)
         })
-};
+}
 
 // Add New Team Member?
 
@@ -60,32 +64,38 @@ const nextPrompt = () => {
                 case "Intern":
                     internBuilder();
                     break;
+                default:
+                    generateWebpage(teamArray)
             }
         });
 }
-
+const generateWebpage = (teamArray) => {
+    let htmlcreated = pageformat(teamArray);
+    console.log('You can now open the webpage called index.html')
+    pageWriteFile(htmlcreated);
+};
 // Add Engineer?
 
 const engineerBuilder = () => {
     return inquirer.prompt([{
                 type: 'input',
                 name: 'name',
-                message: 'Enter the Engineer name'
+                message: "Enter the Engineer's name"
             },
             {
                 type: 'input',
                 name: 'id',
-                message: 'Enter the Engineer Employee ID'
+                message: "Enter the Engineer's Employee ID"
             },
             {
                 type: 'input',
                 name: 'email',
-                message: 'Enter Engineer email address'
+                message: "Enter Engineer's email address"
             },
             {
                 type: 'input',
                 name: 'github',
-                message: 'Enter Engineers GitHub id'
+                message: "Enter Engineers's GitHub username"
             }
         ])
         .then((responses) => {
@@ -94,11 +104,11 @@ const engineerBuilder = () => {
             const engineerProfile = {
                 role: engineer.getRole(),
                 name: engineer.getName(),
-                id: engineer.id(),
+                id: engineer.getID(),
                 email: engineer.getEmail(),
-                github: engineer.gethub(),
+                github: engineer.getGithub(),
             };
-            teamArray.push(engineerBuilder)
+            teamArray.push(engineerProfile)
         })
         .then(nextPrompt);
 }
@@ -107,22 +117,22 @@ const internBuilder = () => {
     return inquirer.prompt([{
                 type: 'input',
                 name: 'name',
-                message: 'Enter Interns name'
+                message: "Enter Intern's name"
             },
             {
                 type: 'input',
                 name: 'id',
-                message: 'Enter Inters id'
+                message: "Enter Inter's ID"
             },
             {
                 type: 'input',
                 name: 'email',
-                message: 'Enter Interns email'
+                message: "Enter Intern's email"
             },
             {
                 type: 'input',
                 name: 'school',
-                message: 'Enter Interns school'
+                message: "Enter Intern's school"
             }
         ])
         .then((responses) => {
@@ -134,8 +144,8 @@ const internBuilder = () => {
                 email: intern.getEmail(),
                 school: intern.getSchool(),
             };
-            teamArray.push(internBuilder)
+            teamArray.push(internProfile)
         })
         .then(nextPrompt);
 }
-managerBuilder();
+managerBuilder().then(nextPrompt)

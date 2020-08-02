@@ -1,6 +1,6 @@
 const makeHTMLpage = (teamArray) => {
     var cardsArray = []
-    teamArray.forEach((iteam) => {
+    teamArray.forEach((item) => {
         var cardHTML
         switch (item.role) {
             case "Manager":

@@ -1,6 +1,7 @@
-const pageformat = require('./public/assets/js/pageFormat');
+const pageformat = require('./public/assets/js/page-template');
 const pageWriteFile = require('./public/assets/js/pageWriteFile');
 const inquirer = require('inquirer');
+// const Team = require('./lib/TeamMember')
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');

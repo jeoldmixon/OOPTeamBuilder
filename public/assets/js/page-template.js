@@ -4,13 +4,13 @@ const makeHTMLpage = (teamArray) => {
         var cardHTML
         switch (item.role) {
             case "Manager":
-                cardHTML = generators.manager(item);
+                cardHTML = generators.Manager(item);
                 break;
             case "Engineer":
-                cardHTML = generators.engineer(item);
+                cardHTML = generators.Engineer(item);
                 break
             case "Intern":
-                cardHTML = generators.intern(item);
+                cardHTML = generators.Intern(item);
                 break
         }
         cardsArray.push(cardHTML);
@@ -86,9 +86,9 @@ module.exports = templateData => {
 </head>
 <body>
   <header>
-    <div class="jumbotron jumbotron-fluid" style="text-align:center; background-color:cadetblue; color:white">
+    <div class="jumbotron jumbotron-fluid" style="text-align:center; background-color:red; color:white">
       <div class="container">
-        <h1 class="display-4" style="font-family: 'Patua One', cursive;">Meet the Team</h1>
+        <h1 class="display-4">My Team</h1>
       </div>
     </div>
   </header>

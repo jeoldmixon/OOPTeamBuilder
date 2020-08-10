@@ -10,7 +10,8 @@ const teamArray = [];
 
 const managerBuilder = () => {
     return inquirer
-        .prompt([{
+        .prompt([
+            {
                 type: "input",
                 name: "name",
                 message: "Enter manager's name",
@@ -224,8 +225,10 @@ const internBuilder = () => {
             const internProfile = {
                 role: intern.getRole(),
                 name: intern.getName(),
+                id: intern.getID(),
                 email: intern.getEmail(),
                 school: intern.getSchool(),
+
             };
             teamArray.push(internProfile);
         })
